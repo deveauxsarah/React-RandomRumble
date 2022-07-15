@@ -1,10 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { hitBack, hitMonster } from '../features/fight/fightSlice';
 
 
 
-const ButtonCapacity = () => {
+const ButtonCapacity = (props) => {
+    const dispatch = useDispatch();
     const combat = () => {
-        console.log('AaaaaaaaaaaiiiiiieeeeeeEEEEEEE !')
+        dispatch(hitMonster( props.player.pv > 0 ? 5 : 0));
+        console.log('AaaaaiiieeeEE !')
+        dispatch(hitBack({
+            id: props.player.id , pv: 2
+        }));
+        // console.log('ok !')
+
     }
         return (
             <button type="button" onClick={() => combat()} className="btn btn-success material-tooltip-main ">
